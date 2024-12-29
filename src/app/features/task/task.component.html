@@ -37,11 +37,11 @@
       ></app-task-table>
   
       <app-task-dialog
-        [displayModal]="displayModal"
-        [isEditing]="isEditing"
+        [displayModal]="displayModal()"
+        [isEditing]="isEditing()"
         [task]="selectedTask"
         (saveTask)="saveTask($event)"
-        (closeDialog)="displayModal = false"
+        (closeDialog)="displayModal.set(false)"
       >
       </app-task-dialog>
     </div>

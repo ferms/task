@@ -13,9 +13,8 @@ import { TaskDialogComponent } from '../../components/task-dialog/task-dialog.co
 import { TaskTableComponent } from '../../components/task-table/task-table.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-
 import { ToastModule } from 'primeng/toast';
-
+import { v4 as uuidv4 } from 'uuid';
 @Component({
   selector: 'app-task',
   standalone: true,
@@ -35,11 +34,11 @@ import { ToastModule } from 'primeng/toast';
 export class TaskComponent {
   _tasks = signal<Task[]>([]);
   public totalRecords = signal<number>(0);
-  public page = signal<number>(0);
-  selectedTask: Task = { title: '', body: '', id: 0 };
+  public page = signal<number>(1);
+  selectedTask: Task = { title: '', body: '', id: '' };
   public rows = signal<number>(5);
-  displayModal = false;
-  isEditing = false;
+  displayModal = signal<boolean>(false);
+  isEditing = signal<boolean>(false);
 
   private readonly taskService = inject(TaskService);
   private readonly messageService = inject(MessageService);
@@ -73,22 +72,22 @@ export class TaskComponent {
   }
 
   openAddTaskModal() {
-    this.selectedTask = { title: '', body: '', id: 0 };
-    this.isEditing = false;
-    this.displayModal = true;
+    this.selectedTask = { title: '', body: '', id: '' };
+    this.isEditing.set(false);
+    this.displayModal.set(true);
   }
 
-  editTask(id: number) {
-    const taskToEdit = this._tasks().find((t) => t.id === id);
+  editTask(id: string) {
+    const taskToEdit = this._tasks().find((t) => t.id === id.toString());
     if (taskToEdit) {
       this.selectedTask = { ...taskToEdit };
-      this.isEditing = true;
-      this.displayModal = true;
+      this.isEditing.set(true);
+      this.displayModal.set(true);
     }
   }
 
   saveTask(task: Task) {
-    if (this.isEditing) {
+    if (this.isEditing()) {
       this.taskService.updateTask(task.id, task).subscribe({
         next: (updatedTask) => {
           const index = this._tasks().findIndex((t) => t.id === updatedTask.id);
@@ -107,11 +106,12 @@ export class TaskComponent {
             summary: 'Error',
             detail: 'Hubo un error al intentar actualizar la tarea.',
           });
-        }
+        },
       });
     } else {
-      this.page.set(0);
+      this.page.set(1);
       this.loadTasks();
+      task.id = uuidv4();
       this.taskService.createTask(task).subscribe({
         next: (newTask) => {
           this._tasks().unshift(newTask);
@@ -127,20 +127,22 @@ export class TaskComponent {
             summary: 'Error',
             detail: 'Hubo un error al intentar crear la tarea.',
           });
-        }
+        },
       });
     }
-    this.displayModal = false;
+    this.displayModal.set(false);
   }
 
-  deleteTask(index: number) {
-    const taskToDelete = this._tasks()[index];
+  deleteTask(id: string) {
     this._confirmationService.confirm({
       header: 'Estas seguro?',
       message: 'Por favor confirme para continuar.',
       accept: () => {
-        this.taskService.deleteTask(taskToDelete.id).subscribe(() => {
-          this._tasks().splice(index, 1);
+        this.taskService.deleteTask(id).subscribe(() => {
+          const index = this._tasks().findIndex((t) => t.id === id);
+          if (index !== -1) {
+            this._tasks().splice(index, 1);
+          }
           this.messageService.add({
             severity: 'info',
             summary: 'Confirmed',

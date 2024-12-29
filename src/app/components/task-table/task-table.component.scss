@@ -1,0 +1,12 @@
+
+app-task-table {
+    .p-paginator {
+        @apply p-[1px];
+    }
+    .p-paginator-page, .p-paginator-next, .p-paginator-last, .p-paginator-first, .p-paginator-prev {
+        @apply text-xs;
+    }
+    .p-select-label {
+        @apply text-xs;
+    }
+}

@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 export class TaskDialogComponent {
   @Input() displayModal = false;
   @Input() isEditing = false;
-  @Input() task: Task = { title: '', body: '', id: 0 };
+  @Input() task: Task = { title: '', body: '', id: '' };
 
   @Output() saveTask = new EventEmitter<Task>();
   @Output() closeDialog = new EventEmitter<void>();

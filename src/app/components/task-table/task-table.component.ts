@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { Task } from '../../models/task.model';
@@ -7,6 +7,7 @@ import { PaginatorState } from 'primeng/paginator';
 @Component({
   selector: 'app-task-table',
   imports: [TableModule, ButtonModule,],
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './task-table.component.html',
   styleUrl: './task-table.component.scss'
 })
@@ -15,9 +16,9 @@ export class TaskTableComponent {
   @Input() rows: number = 5;
   first: number = 0;
   @Input() totalRecords: number = 100;
-  @Output() pageChange = new EventEmitter<any>();
-  @Output() editTask = new EventEmitter<number>();
-  @Output() deleteTask = new EventEmitter<number>();
+  @Output() pageChange = new EventEmitter<PaginatorState>();
+  @Output() editTask = new EventEmitter<string>();
+  @Output() deleteTask = new EventEmitter<string>();
 
   onPageChange(event: PaginatorState) {
     const pageInfo = {
@@ -27,11 +28,11 @@ export class TaskTableComponent {
     this.pageChange.emit(pageInfo);
   }
 
-  onEditTask(id: number) {
+  onEditTask(id: string) {
     this.editTask.emit(id);
   }
 
-  onDeleteTask(index: number) {
-    this.deleteTask.emit(index);
+  onDeleteTask(id: string) {
+    this.deleteTask.emit(id);
   }
 }

@@ -5,11 +5,9 @@ export enum endpoint {
 
 export interface Task {
   userId?: number;
-  id: number;
+  id: string;
   title?: string;
   name?: string;
   body: string;
-  email?: string;
-  completed?: boolean; 
 }
 

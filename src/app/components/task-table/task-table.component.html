@@ -8,15 +8,16 @@
   [first]="first"
   [totalRecords]="totalRecords"
   (onPage)="onPageChange($event)"
-  [tableStyle]="{ 'min-width': '60rem' }"
+  [tableStyle]="{ 'min-width': '25rem' }"
   [rowsPerPageOptions]="[5, 10, 20]"
   stripedRows
+  responsiveLayout="scroll"
 >
   <ng-template pTemplate="header">
     <tr>
-        <th style="width: 25%" scope="col">Titulo</th>
-        <th style="width: 50%" scope="col">Descripción</th>
-        <th style="width: 15%" scope="col">Acciones</th>
+      <th style="width: 25%" scope="col">Titulo</th>
+      <th style="width: 50%" scope="col">Descripción</th>
+      <th style="width: 15%" scope="col">Acciones</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-task let-index="rowIndex">
@@ -34,7 +35,7 @@
           <p-button
             icon="pi pi-trash"
             class="p-button-rounded destructive"
-            (click)="onDeleteTask(index)"
+            (click)="onDeleteTask(task.id)"
             onKeyPress=""
           ></p-button>
         </div>
