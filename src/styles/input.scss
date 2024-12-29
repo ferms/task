@@ -1,0 +1,13 @@
+input {
+  @apply bg-slate-100 py-[9px] pr-[10px] pl-8 rounded w-full text-xs text-primary-blue font-semibold leading-normal border-[0.5px] border-solid border-primary hover:border-primary-blue hover:shadow-[2px_2px_6px_0px_rgba(0,0,0,0.25)] focus:bg-white focus:shadow-[2px_2px_6px_0px_rgba(0,0,0,0.25)];
+}
+
+
+textarea {
+  @apply bg-slate-100 py-[9px] pr-[10px] pl-8 rounded w-full text-xs text-primary-blue font-semibold leading-normal border-[0.5px] border-solid border-primary hover:border-primary-blue hover:shadow-[2px_2px_6px_0px_rgba(0,0,0,0.25)] focus:bg-white focus:shadow-[2px_2px_6px_0px_rgba(0,0,0,0.25)];
+}
+
+
+.text-help-input {
+  @apply font-sans font-normal text-xs leading-[15px];
+}

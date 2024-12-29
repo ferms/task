@@ -32,13 +32,19 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "node_modules/primeicons/primeicons.css",
+               "src/styles/styles.scss"
             ],
             "scripts": [],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "ssr": {
               "entry": "src/server.ts"
+            },
+            "stylePreprocessorOptions": {
+              "sass": {
+                "silenceDeprecations": ["color-functions", "global-builtin", "import", "mixed-decls"]
+              }
             }
           },
           "configurations": {
@@ -96,12 +102,16 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+               "node_modules/primeicons/primeicons.css",
+               "src/styles/styles.scss"
             ],
             "scripts": []
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "37cbf069-b673-4dd0-91e1-2e1ddb146865"
   }
 }

@@ -1,0 +1,67 @@
+<div
+  class="flex flex-col justify-between pb-5 w-full h-screen items-center pt-4"
+>
+  <div class="flex flex-col items-center gap-4 w-full">
+    <div
+      class="flex flex-col items-center gap-4 max-w-[960px] w-full bg-white p-5 rounded-md"
+    >
+      <div class="flex flex-col gap-[10px]">
+        <h1
+          class="text-center text-slate-700 text-2xl font-bold leading-normal"
+        >
+          Registro de tareas
+        </h1>
+        <p
+          class="text-center text-constrast-text-primary text-xs leading-normal font-medium"
+        >
+          Puedes gestionar tus tareas aquí.
+        </p>
+      </div>
+      <div class="flex w-full">
+        <p-button
+          label="Agregar Tarea"
+          icon="pi pi-plus"
+          (click)="openAddTaskModal()"
+          class="p-button-rounded"
+          onKeyPress=""
+        ></p-button>
+      </div>
+
+      <app-task-table
+        [tasks]="tasks()"
+        [rows]="rows()"
+        [totalRecords]="totalRecords()"
+        (pageChange)="onPageChange($event)"
+        (editTask)="editTask($event)"
+        (deleteTask)="deleteTask($event)"
+      ></app-task-table>
+  
+      <app-task-dialog
+        [displayModal]="displayModal"
+        [isEditing]="isEditing"
+        [task]="selectedTask"
+        (saveTask)="saveTask($event)"
+        (closeDialog)="displayModal = false"
+      >
+      </app-task-dialog>
+    </div>
+  </div>
+</div>
+<p-toast />
+<p-confirmdialog #cd>
+  <ng-template #headless let-message let-onAccept="onAccept" let-onReject="onReject">
+      <div class="flex flex-col items-center p-8 bg-surface-0 dark:bg-surface-900 rounded">
+          <div
+              class="rounded-full bg-primary text-primary-contrast inline-flex justify-center items-center h-24 w-24 -mt-20"
+          >
+              <i class="pi pi-question !text-5xl"></i>
+          </div>
+          <span class="font-bold text-2xl block mb-2 mt-6">{{ message.header }}</span>
+          <p class="mb-0">{{ message.message }}</p>
+          <div class="flex items-center gap-2 mt-6">
+              <p-button label="Eliminar" (onClick)="onAccept()" styleClass="w-32"></p-button>
+              <p-button label="Cancelar" [outlined]="true" (onClick)="onReject()" styleClass="w-32"></p-button>
+          </div>
+      </div>
+  </ng-template>
+</p-confirmdialog>

@@ -1,0 +1,47 @@
+<p-dialog
+  [(visible)]="displayModal"
+  [modal]="true"
+  [style]="{ width: '30vw' }"
+  header="{{ isEditing ? 'Editar Tarea' : 'Nueva Tarea' }}"
+  (onHide)="hideDialog()"
+>
+  <form [formGroup]="taskForm">
+    <div class="p-field mb-3">
+      <label for="title">Título</label>
+      <input pInputText id="title" formControlName="title" />
+      <small
+        *ngIf="
+          taskForm.controls['title'].invalid &&
+          taskForm.controls['title'].touched
+        "
+        class="text-red-500 text-help-input"
+      >
+        El título es obligatorio.
+      </small>
+    </div>
+    <div class="p-field mb-3">
+      <label for="body">Descripción</label>
+      <textarea
+        pInputTextarea
+        id="body"
+        formControlName="body"
+        rows="4"
+      ></textarea>
+      <small
+        *ngIf="
+          taskForm.controls['body'].invalid && taskForm.controls['body'].touched
+        "
+        class="text-red-500 text-help-input"
+      >
+        La descripción debe tener al menos 10 caracteres.
+      </small>
+    </div>
+    <p-button
+      label="Guardar"
+      icon="pi pi-check"
+      (click)="save()"
+      [disabled]="taskForm.invalid"
+      onKeyPress=""
+    ></p-button>
+  </form>
+</p-dialog>
