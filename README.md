@@ -1,10 +1,25 @@
 # TaskList
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
+Este proyecto se generó utilizando [Angular CLI](https://github.com/angular/angular-cli) versión 19.0.6.
+Este proyecto consiste en una aplicación de gestión de tareas  que incluye un frontend desarrollado en Angular versión 19.0.6.  A continuación se presenta una guía para ejecutar el proyectos y cómo correr las pruebas.
 
-## Development server
+## Requisitos Previos
 
-To start a local development server, run:
+Asegúrate de tener instalados los siguientes programas:
+
+- [Node.js](https://nodejs.org/) (versión 22.12.0)
+- [Angular CLI](https://github.com/angular/angular-cli) (versión 19.0.6)
+
+
+## Ejecutar el Proyecto
+
+Para iniciar el proyecto primero es necesario descargar los archivos de node_modules , ejecute:
+
+
+```bash
+npm install
+```
+Para iniciar un servidor de desarrollo local, ejecute:
 
 ```bash
 ng serve
