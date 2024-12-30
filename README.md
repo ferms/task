@@ -1,7 +1,7 @@
 # TaskList
 
 Este proyecto se generó utilizando [Angular CLI](https://github.com/angular/angular-cli) versión 19.0.6.
-Este proyecto consiste en una aplicación de gestión de tareas  que incluye un frontend desarrollado en Angular versión 19.0.6.  A continuación se presenta una guía para ejecutar el proyectos y cómo correr las pruebas.
+consiste en una aplicación de gestión de tareas  que incluye un frontend desarrollado en Angular versión 19.0.6.  A continuación se presenta una guía para ejecutar el proyectos y cómo correr las pruebas.
 
 ## Requisitos Previos
 
@@ -25,47 +25,17 @@ Para iniciar un servidor de desarrollo local, ejecute:
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Una vez que el servidor esté en funcionamiento, abra su navegador y navegue hasta `http://localhost:4200/`. La aplicación se recargará automáticamente cada vez que modifique alguno de los archivos de origen.
 
-## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Ejecución de pruebas unitarias
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Para ejecutar pruebas unitarias con el ejecutor de pruebas [Karma](https://karma-runner.github.io) utilice el siguiente comando:
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
 
 Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
