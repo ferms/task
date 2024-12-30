@@ -15,7 +15,7 @@ export class TaskTableComponent {
   @Input() tasks: Task[] = [];
   @Input() rows: number = 5;
   first: number = 0;
-  @Input() totalRecords: number = 100;
+  @Input() totalRecords: number = 1;
   @Output() pageChange = new EventEmitter<PaginatorState>();
   @Output() editTask = new EventEmitter<string>();
   @Output() deleteTask = new EventEmitter<string>();
